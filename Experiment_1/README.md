@@ -1,26 +1,31 @@
+README
 Student Performance Analysis Using R
 Objective
-To analyze and visualize student academic performance using R to identify subject-wise averages, performance trends, and grade distribution.
+
+To analyze and visualize student academic performance using R in order to identify subject-wise average marks, performance trends, and grade distribution.
 
 Dataset
-X1_student_performance includes:
 
-Student_ID
-Subject
-Internal_Test1, Internal_Test2
-Assignment_Marks
-Final_Grade
+The dataset X1_student_performance contains student academic details including internal test scores, assignment marks, and final grades.
 
 Tools Used
-R Language
+
+R Programming Language
+
 ggplot2
+
 dplyr
+
 tidyr
 
-Tasks Performed
-Calculated subject-wise average marks and visualized them using a grouped bar chart.
-Analyzed performance trends between internal tests using a line plot.
-Displayed final grade distribution using a pie chart.
+Experimental Tasks
+
+Computation of subject-wise average marks and visualization using a grouped bar chart.
+
+Analysis of performance trends across internal tests using a line plot.
+
+Visualization of final grade distribution using a pie chart.
 
 Conclusion
-The analysis provides insights into student performance patterns and supports data-driven academic evaluation.
+
+The experiment demonstrates the application of R for academic data analysis and effective visualization of student performance metrics.
