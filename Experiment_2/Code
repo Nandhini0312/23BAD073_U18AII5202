@@ -1,1 +1,59 @@
+# -------------------------------
+# LOAD REQUIRED LIBRARIES
+# -------------------------------
+library(ggplot2)
+library(dplyr)
+library(gridExtra)
+
+# -------------------------------
+# DATA ASSUMPTION
+# Dataset already loaded as: ecommerce_data
+# Columns used:
+# Transaction_Amount, Month, Sales_Value
+# -------------------------------
+
+# -------------------------------
+# HISTOGRAM: TRANSACTION AMOUNTS
+# -------------------------------
+p1 <- ggplot(ecommerce_data, aes(x = Transaction_Amount)) +
+  geom_histogram(bins = 30, fill = "steelblue", color = "black") +
+  labs(
+    title = "Transaction Amount Distribution",
+    x = "Transaction Amount",
+    y = "Frequency"
+  )
+
+# -------------------------------
+# BOXPLOT: OUTLIER DETECTION
+# -------------------------------
+p2 <- ggplot(ecommerce_data, aes(y = Transaction_Amount)) +
+  geom_boxplot(fill = "lightcoral") +
+  labs(
+    title = "Outlier Detection in Transactions",
+    y = "Transaction Amount"
+  )
+
+# -------------------------------
+# HEATMAP: MONTHLY SALES INTENSITY
+# -------------------------------
+monthly_sales <- ecommerce_data %>%
+  group_by(Month) %>%
+  summarise(Total_Sales = sum(Sales_Value))
+
+p3 <- ggplot(monthly_sales, aes(x = Month, y = 1, fill = Total_Sales)) +
+  geom_tile() +
+  scale_fill_gradient(low = "lightyellow", high = "red") +
+  labs(
+    title = "Monthly Sales Intensity Heatmap",
+    x = "Month",
+    y = "",
+    fill = "Sales Intensity"
+  ) +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+
+# -------------------------------
+# COMBINE ALL VISUALIZATIONS
+# -------------------------------
+grid.arrange(p1, p2, p3, ncol = 2)
 
