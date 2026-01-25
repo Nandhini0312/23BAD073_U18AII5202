@@ -1,1 +1,49 @@
+# ===============================================
+# Multivariate Visualization of Healthcare Data
+# Roll No: 23BAD073
+# Name   : NANDHINI G
+# ===============================================
+
+# Load required library
+library(GGally)
+
+# Import dataset
+health_data <- read.csv("3.healthcare_data.csv")
+
+# =========================
+# TASK 1: Scatter Plot Matrix
+# =========================
+ggpairs(
+  health_data,
+  columns = c("Age", "BMI", "Glucose_Level", "Blood_Pressure"),
+  title = "Scatter Plot Matrix of Health Indicators\n23BAD073 - NANDHINI G"
+)
+
+# =========================
+# TASK 2: Color Encoding for Age Groups
+# =========================
+health_data$Age_Group <- cut(
+  health_data$Age,
+  breaks = c(0, 30, 45, 60, 100),
+  labels = c("Young", "Middle", "Senior", "Elder")
+)
+
+ggpairs(
+  health_data,
+  columns = c("Age", "BMI", "Glucose_Level", "Blood_Pressure"),
+  aes(color = Age_Group, alpha = 0.7),
+  title = "Scatter Plot Matrix with Age Group Encoding\n23BAD073 - NANDHINI G"
+)
+
+# =========================
+# TASK 3: Correlation Analysis
+# =========================
+cor_matrix <- cor(
+  health_data[, c("Age", "BMI", "Glucose_Level", "Blood_Pressure")],
+  use = "complete.obs"
+)
+
+print("Correlation Matrix of Health Indicators")
+print("23BAD073 - NANDHINI G")
+print(cor_matrix)
 
