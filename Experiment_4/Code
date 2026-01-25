@@ -1,0 +1,46 @@
+# -------------------------------
+# LOAD REQUIRED LIBRARY
+# -------------------------------
+library(ggplot2)
+
+# -------------------------------
+# 1. Accident Severity using Color Gradient
+# -------------------------------
+ggplot(X4_traffic_accidents_1_,
+       aes(x = Location,
+           y = Accident_ID,
+           color = as.numeric(factor(Severity)))) +
+  geom_point(size = 3) +
+  scale_color_gradient(low = "yellow", high = "red") +
+  labs(
+    title = "Accident Severity Pattern",
+    subtitle = "23BAD073 – NANDHINI G",
+    color = "Severity Level"
+  )
+
+# -------------------------------
+# 2. Accident Frequency using Size
+# -------------------------------
+ggplot(X4_traffic_accidents_1_,
+       aes(x = Location)) +
+  geom_bar(aes(size = after_stat(count)),
+           fill = "steelblue") +
+  labs(
+    title = "Accident Frequency by Location",
+    subtitle = "23BAD073 – NANDHINI G",
+    size = "Accident Frequency"
+  )
+
+# -------------------------------
+# 3. Accident Type using Shape
+# -------------------------------
+ggplot(X4_traffic_accidents_1_,
+       aes(x = Location,
+           y = Accident_ID,
+           shape = Accident_Type)) +
+  geom_point(size = 3, color = "darkgreen") +
+  labs(
+    title = "Accident Types by Location",
+    subtitle = "23BAD073 – NANDHINI G",
+    shape = "Accident Type"
+  )
