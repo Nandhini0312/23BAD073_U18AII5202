@@ -1,4 +1,3 @@
-README
 Student Performance Analysis Using R
 Objective
 
