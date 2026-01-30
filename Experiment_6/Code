@@ -1,0 +1,71 @@
+# =====================================================
+# ADVANCED MULTIVARIATE DISPLAYS – RETAIL ANALYTICS
+# Roll No: 23BAD073
+# Name: NANDHINI G
+# =====================================================
+
+# --------- Install required packages (run once) ---------
+install.packages("ggplot2")
+install.packages("lattice")
+install.packages("MASS")
+
+# --------- Load required libraries ---------
+library(ggplot2)
+library(lattice)
+library(MASS)
+
+# --------- Load Dataset ---------
+retail_data <- read.csv("6.retail_business.csv")
+
+# =====================================================
+# TASK 1: PARALLEL COORDINATE PLOT
+# =====================================================
+
+# Select numeric variables
+numeric_data <- retail_data[, c("Sales", "Profit")]
+
+# Parallel Coordinate Plot
+parcoord(
+  numeric_data,
+  col = as.numeric(as.factor(retail_data$Region)),
+  lwd = 2
+)
+
+title(
+  main = "Parallel Coordinate Plot - Retail Business Data",
+  sub = "Roll No: 23BAD073 | Name: NANDHINI G"
+)
+
+# =====================================================
+# TASK 2: BUBBLE CHART
+# =====================================================
+
+ggplot(retail_data, aes(
+  x = Sales,
+  y = Profit,
+  size = Sales,
+  color = Region
+)) +
+  geom_point(alpha = 0.6) +
+  labs(
+    title = "Bubble Chart: Sales vs Profit",
+    subtitle = "Roll No: 23BAD073 | Name: NANDHINI G",
+    x = "Sales",
+    y = "Profit",
+    size = "Sales Volume"
+  ) +
+  theme_minimal()
+
+# =====================================================
+# TASK 3: TRELLIS DISPLAY BY REGION
+# =====================================================
+
+xyplot(
+  Profit ~ Sales | Region,
+  data = retail_data,
+  main = "Trellis Display of Sales vs Profit by Region\nRoll No: 23BAD073 | Name: NANDHINI G",
+  xlab = "Sales",
+  ylab = "Profit",
+  pch = 16,
+  col = "blue"
+)
