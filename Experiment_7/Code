@@ -1,0 +1,53 @@
+# ==============================
+# Social Media Analytics Lab
+# Roll No: 23BAD073
+# Name: NANDHINI G
+# ==============================
+
+# ---------- Libraries ----------
+library(ggplot2)
+library(dplyr)
+library(hexbin)
+
+# ---------- 1. Alpha Blending ----------
+ggplot(X7_social_media_interactions,
+       aes(x = likes, y = comments)) +
+  geom_point(alpha = 0.2, color = "blue") +
+  labs(
+    title = "Alpha Blending Visualization",
+    subtitle = "Roll No: 23BAD073 | NANDHINI G"
+  )
+
+
+# ---------- 2. Jittering ----------
+ggplot(X7_social_media_interactions,
+       aes(x = likes, y = comments)) +
+  geom_jitter(width = 0.3, height = 0.3, alpha = 0.5, color = "red") +
+  labs(
+    title = "Jittering Visualization",
+    subtitle = "Roll No: 23BAD073 | NANDHINI G"
+  )
+
+
+# ---------- 3. Aggregation ----------
+agg_data <- X7_social_media_interactions %>%
+  group_by(platform) %>%
+  summarise(avg_likes = mean(likes))
+
+ggplot(agg_data,
+       aes(x = platform, y = avg_likes, fill = platform)) +
+  geom_bar(stat = "identity") +
+  labs(
+    title = "Aggregation: Average Likes by Platform",
+    subtitle = "Roll No: 23BAD073 | NANDHINI G"
+  )
+
+
+# ---------- 4. Binning (Single Method) ----------
+ggplot(X7_social_media_interactions,
+       aes(x = likes, y = comments)) +
+  geom_bin2d(bins = 25) +
+  labs(
+    title = "2D Binning Visualization",
+    subtitle = "Roll No: 23BAD073 | NANDHINI G"
+  )
